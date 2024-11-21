@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la Agenda AEDII</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#libArchivos">libArchivos.h</a></li>
+                <li><a href="#libContactos">libContactos.h</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Documentación de la Agenda AEDII</h1>
+            <p>Explora las funciones y estructuras utilizadas en este proyecto para la gestión de contactos mediante listas enlazadas y archivos binarios.</p>
+            <div class="buttons">
+                <a href="https://github.com/IvoCespedesStefani/Proyecto-Integrador-AEDII" target="_blank" class="repo-button">Ir al Repositorio</a>
+                <a href="documentacion-ampliada.pdf" class="download-button" download>Descargar Documentación Ampliada</a>
+                <a href="informe-trabajo.pdf" class="download-button" download>Descargar Informe del Trabajo</a>
+            </div>
+        </section>
+
+        <section id="libArchivos">
+            <h2>TAD: libArchivos.h</h2>
+            <article>
+                <h3>abrirArchivoLectura()</h3>
+                <p>
+                    Esta función intenta abrir el archivo <code>db.dat</code> en modo lectura binaria (<code>rb</code>). Si el archivo no existe, lo crea en modo escritura binaria (<code>wb</code>), lo cierra y luego lo reabre en modo lectura. 
+                    Esto asegura que el archivo siempre esté disponible para leer datos.
+                </p>
+            </article>
+            <article>
+                <h3>abrirArchivoEscritura()</h3>
+                <p>
+                    Similar a <code>abrirArchivoLectura()</code>, pero abre el archivo en modo lectura-escritura binaria (<code>rb+</code>). 
+                    Si no existe, lo crea y lo abre en modo escritura binaria (<code>wb</code>) y luego lo reabre en modo lectura-escritura. Permite actualizar el contenido del archivo.
+                </p>
+            </article>
+            <article>
+                <h3>grabarLista()</h3>
+                <p>
+                    Esta función recorre una lista enlazada y escribe cada nodo en el archivo binario utilizando <code>fwrite</code>. 
+                    El contenido anterior del archivo es sobrescrito. Garantiza que la lista actual se almacene completamente en disco.
+                </p>
+            </article>
+            <article>
+                <h3>cargarLista()</h3>
+                <p>
+                    Lee los datos almacenados en el archivo binario y reconstruye una lista enlazada en memoria, creando dinámicamente nodos por cada registro leído. 
+                    Es útil para restaurar datos previos y trabajar con ellos en la lista enlazada.
+                </p>
+            </article>
+            <article>
+                <h3>getContactoNum(tString)</h3>
+                <p>
+                    Busca un contacto en el archivo binario por su número telefónico. Si encuentra el número, devuelve el contacto; de lo contrario, indica que no existe.
+                    Esto permite realizar búsquedas rápidas sin cargar toda la lista en memoria.
+                </p>
+            </article>
+        </section>
+
+        <section id="libContactos">
+            <h2>TAD: libContactos.h</h2>
+            <article>
+                <h3>crearContacto()</h3>
+                <p>
+                    Solicita al usuario ingresar los datos de un nuevo contacto (nombre, número, etc.). Valida que el número telefónico no esté en uso 
+                    antes de añadirlo a la lista enlazada. Crea un nodo con los datos ingresados.
+                </p>
+            </article>
+            <article>
+                <h3>editarContacto(const char)</h3>
+                <p>
+                    Permite al usuario buscar un contacto por su número telefónico y modificar su información (nombre, dirección, etc.). 
+                    Los cambios se actualizan tanto en la lista enlazada como en el archivo binario.
+                </p>
+            </article>
+            <article>
+                <h3>eliminarContacto()</h3>
+                <p>
+                    Busca un contacto en la lista enlazada utilizando su número telefónico, lo elimina y actualiza la lista en el archivo binario. 
+                    Esto permite mantener los datos actualizados eliminando contactos obsoletos.
+                </p>
+            </article>
+            <article>
+                <h3>mostrarContactos(tContacto)</h3>
+                <p>
+                    Recorre la lista enlazada y muestra en pantalla todos los contactos registrados, manteniendo intacta la estructura original. 
+                    Es útil para visualizar la información almacenada de forma ordenada.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Agenda AEDII. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
